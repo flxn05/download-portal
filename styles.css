@@ -1,0 +1,76 @@
+body {
+  background-color: #15202B;
+  color: white;
+  font-family: arial;
+  height: 3000px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 64px;
+  background-color:  #121212;
+  color: white;
+  overflow: hidden;
+}
+
+.logo {
+  height: 58px;
+  margin-right: 44px;
+}
+
+.githublink {
+  margin-left: 44px;
+  background-color: black;
+  color: white;
+  border: solid grey 1px;
+  border-radius: 3px;
+}
+
+.space {
+  margin: 128px;
+}
+
+.wrap {
+  display: flex;
+  justify-content: center;
+}
+
+.headline {
+  font-size: 2rem;
+  letter-spacing: 0px;
+  font-weight: bold;
+  margin-top: 256px;
+}
+
+.download-btn {
+  background-color: rgb(0, 47, 255);
+  border: solid 1px rgba(0, 0, 255, 0.541);
+  color: lightgrey;
+  font-size: 24px;
+  margin-top: 36px;
+  font-family: arial;
+  padding-left: 6px;
+  padding-right: 6px;
+  padding: 14px;
+  border-radius: 24px;
+  letter-spacing: 1px;
+  font-weight: bold;
+  transition: all 50ms;
+}
+.download-btn:hover {
+  background-color: rgb(0, 0, 255);
+  color: white;
+}
+
+
+
+
+.anchor {
+  margin: 100px;
+}
