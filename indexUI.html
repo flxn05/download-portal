@@ -12,7 +12,7 @@
   margin-top: 16.5vh;
 }
 body {
-  background-color: #132130;
+  background-color: rgb(29, 49, 71);
   padding-top: 5vh;
 }
 .button-container {
@@ -165,13 +165,20 @@ nav div {
   100% {opacity: 1;}
 }
 
+@media (prefers-color-scheme: dark) {
+    body {
+        color: black; /* stellt sicher, dass der Text auch im Dark Mode schwarz bleibt */
+    }
+}
+
+
 .fixed-boot {
   position: fixed;
   top: 0;
   bottom: 0;
   left: 0;
   right: 0;
-  background-color: #132130;
+  background-color: rgb(29, 49, 71);
   display: flex;
   justify-content: center;
   align-items: center;
