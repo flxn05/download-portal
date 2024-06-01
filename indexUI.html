@@ -182,7 +182,7 @@ nav div {
   display: flex;
   justify-content: center;
   align-items: center;
-  animation: fadeout 100ms forwards ease-in-out 2s;
+  animation: fadeout 100ms forwards ease-in-out 2s;   /* 2 sec. def. */
 }
 .headline {
   font-family: Arial, Helvetica, sans-serif;
@@ -208,7 +208,8 @@ main {
   height: 24px;
   border-radius: 12px;
   border: solid 1px black;
-  animation: loading 2.25s cubic-bezier(.61,.28,.17,.72) 250ms;
+  animation: loading 2.25s cubic-bezier(.61,.28,.17,.72) 250ms; /* 2.25sec. def */
+  animation-iteration-count: 3;
   animation-timing-function: ease-in-out;
 }
 .container-loading {
@@ -295,12 +296,15 @@ main {
         const slider = document.getElementById('myRange');
         function sendSliderValue() {
             const value = slider.value;
-            const xhr = new XMLHttpRequest();
+            const xhr = new XMLHttpRequest();+
             xhr.open('GET', `/?value=${value}`, true);
             xhr.send();}
-        setInterval(sendSliderValue,400);});
+        setInterval(sendSliderValue,200);});
        </script>
     </div>
+    <div class="space"></div>
+    <!--number input-->
+    <!--/number input-->
     <div class="space"></div>
   </main>
     <!-- FIXED POSITION BOOT SCREEN -->
