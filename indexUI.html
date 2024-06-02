@@ -11,6 +11,9 @@
 .halfspace {
   margin-top: 16.5vh;
 }
+.quarterspace {
+  margin-top: 8.25vh;
+}
 body {
   background-color: rgb(29, 63, 99);
   padding-top: 5vh;
@@ -27,8 +30,8 @@ body {
 .hold-btn,
 .full-btn,
 .ease-in-btn,
-.ahh-btn,
-.ease-out-btn {
+.ease-out-btn,
+.ahh-btn {
   border: solid black 1px;
   border-radius: 12px;
   height: 44px;
@@ -53,9 +56,16 @@ body {
 
 /* cl="preset buttons" style */
 .ease-in-btn,
-.ease-out-btn,
-.ahh-btn {
+.ease-out-btn {
  background-color: lightgrey;
+}
+
+.ahh-btn {
+  background-color: transparent;
+  border: none;
+  color: transparent;
+  padding-left: 4px;
+  padding-right: 4px;
 }
 
 .slider {
@@ -94,7 +104,25 @@ padding-right: 7.5vw;
   cursor: pointer;
   border-color: white;
 }
-
+.inputcontainer {
+  display: flex;
+  justify-content: center;
+}
+#numberInput {
+  flex: 1;
+  max-width: 128px;
+  min-width: 44px;
+  border: none;
+  background-color: rgb(0, 34, 69);
+  border-radius: 8px;
+  height: 32px;
+  color: white;
+  transition: all 0.15s;
+}
+#numberInput:focus {
+  transform: scale(1.33);
+  outline: none;
+}
 nav {
   text-align: center;
   position: fixed;
@@ -119,21 +147,32 @@ nav div {
 .hold-btn:hover,
 .full-btn:hover,
 .ease-in-btn:hover,
-.ahh-btn:hover,
 .ease-out-btn:hover {
   font-size: 22px;
   width: 118.8px;
 }
+
+.ahh-btn:hover {
+  background-color: rgb(0, 34, 69);
+  color: white;
+}
+
 .headline-ccc {
-  font-size: 2rem;
+  font-size: 1.75rem;
   font-weight: bold;
   font-family: Arial, Helvetica, sans-serif;
   animation: opac .25s ease-in-out backwards 2.5s;
-  letter-spacing: -2.5px;
+  letter-spacing: -2.25px;
 }
 .container-flex {
   display: flex;
-  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.current {
+  font-size: 6rem;
+  font-weight: bold;
 }
 
 /* @ANIMATION Keyframes */
@@ -222,9 +261,11 @@ main {
 </head>
 <body>
   <main>
-    <div class="container-flex"><p class="headline-ccc">Cable Cam Control</p></div>
+    <div class="container-flex">
+      <p class="headline-ccc">Cable Cam Control</p>
+      <div class="current">69</div></div>
   <!-- .space DIV for centering -->
-  <div class="halfspace"></div>
+  <div class="quarterspace"></div>
 <!-- DIV for FLEXBOX [SPACE-BETWEEN] -->
 <div class="button-container">
   <!-- STOP -->
@@ -235,7 +276,7 @@ main {
                  xhr.open('GET', "/stop", true);
                  xhr.send();}
           </script>       
-         <button onclick=stop() class="stop-btn">Stop</button>
+         <button onclick=stop() class="stop-btn"><b>Stop</b></button>
     </div>
     <!-- HOLD -->
     <div>
@@ -267,16 +308,6 @@ main {
           </script>       
          <button onclick=ein() class="ease-in-btn">Ease In</button>
     </div>
-    <!-- AHHH AHHH AHHH PRESET -->
-    <div>
-      <script>
-          function ahh(){
-              const xhr = new XMLHttpRequest();
-              xhr.open('GET', "/ahh", true);
-              xhr.send();}
-       </script>       
-      <button onclick=ahh() class="ahh-btn">Ahh</button>
- </div>
      <!-- Ease-out -->
     <div>
       <script>
@@ -287,11 +318,21 @@ main {
        </script>       
       <button onclick=eout() class="ease-out-btn">Ease Out</button>
  </div>
+     <!-- AHHH AHHH AHHH PRESET -->
+     <div>
+      <script>
+          function ahh(){
+              const xhr = new XMLHttpRequest();
+              xhr.open('GET', "/ahh", true);
+              xhr.send();}
+       </script>       
+      <button onclick=ahh() class="ahh-btn">Ahh Preset</button>
+ </div>
 </div> <!-- Ending DIV for div.button-container -->
     <!-- SLIDER HTML AND JS -->
     <div class="slidecontainer">
       <input type="range" min=-99  max=99 value=0 class="slider" id="myRange">
-      <script>
+      <!--<script>
         document.addEventListener('DOMContentLoaded', (event) => {
         const slider = document.getElementById('myRange');
         function sendSliderValue() {
@@ -300,10 +341,55 @@ main {
             xhr.open('GET', `/?value=${value}`, true);
             xhr.send();}
         setInterval(sendSliderValue,200);});
-       </script>
+       </script>-->
+
+       <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+        const slider = document.getElementById('myRange');
+        const currentDiv = document.querySelector('.current');
+        
+        // Funktion zur Aktualisierung des Werts in der 'current'-Div
+        function updateCurrentValue() {
+            currentDiv.textContent = slider.value;
+        }
+
+        // Event Listener für Änderungen am Slider
+        slider.addEventListener('input', updateCurrentValue);
+
+        // Initiales Setzen des Werts
+        updateCurrentValue();
+        
+        function sendSliderValue() {
+            const value = slider.value;
+            const xhr = new XMLHttpRequest();
+            xhr.open('GET', `/?value=${value}`, true);
+            xhr.send();
+        }
+        setInterval(sendSliderValue, 200);
+      });
+      </script>
+
+
     </div>
-    <div class="space"></div>
+    <div class="quarterspace"></div>
     <!--number input-->
+    <div class="inputcontainer">
+      <form>
+    <input type="text" id="numberInput" placeholder="Enter keyframe" min="-99" max="99" maxlength="3" oninput="validateInput(event)">
+    
+    <script>
+        function validateInput(event) {
+            const input = event.target;
+            const value = input.value;
+            // Entferne alle Zeichen, die keine Zahlen oder "-" sind
+            const sanitizedValue = value.replace(/[^0-9-]/g, '');
+            // Setze den bereinigten Wert zurück in das Input-Feld
+            input.value = sanitizedValue;
+        }
+    </script>
+    <button id="numberInput">Set Keyframe</button>
+      </form>
+    </div>
     <!--/number input-->
     <div class="space"></div>
   </main>
