@@ -72,7 +72,7 @@ body {
   -webkit-appearance: none;
   height: 4px;
   border-radius: 5px;  
-  background-image: linear-gradient(90deg, #7f7f7f7f, #3d3d3d, #7f7f7f);
+  background-image: linear-gradient(90deg, rgb(0, 40, 69), rgb(0, 11, 27), rgb(0, 40, 69));
   outline: none;
   opacity: 0.7;
   -webkit-transition: .2s;
@@ -130,7 +130,7 @@ nav {
   left: 0;
   right: 0;
   font-family: Arial, Helvetica, sans-serif;
-  color: grey;
+  color: rgb(0, 16, 32);
   padding-bottom: 12px;
   font-size: 10px;
   display: flex;
@@ -161,7 +161,7 @@ nav div {
   font-size: 1.75rem;
   font-weight: bold;
   font-family: Arial, Helvetica, sans-serif;
-  animation: opac .25s ease-in-out backwards 2.5s;
+  animation: opac .25s ease-in-out backwards 2.25s;
   letter-spacing: -2.25px;
 }
 .container-flex {
@@ -221,7 +221,7 @@ nav div {
   display: flex;
   justify-content: center;
   align-items: center;
-  animation: fadeout 100ms forwards ease-in-out 2s;   /* 2 sec. def. */
+  animation: fadeout 100ms forwards ease-in-out 1.5s;   /* 1.5 sec. def. */
 }
 .headline {
   font-family: Arial, Helvetica, sans-serif;
@@ -240,14 +240,14 @@ nav div {
   text-align: left;
 }
 main {
-  animation: fadein .5s ease-in-out 2s forwards;
+  animation: fadein .5s ease-in-out 1.5s forwards;
 }
 
 .loading-bar {
   height: 24px;
   border-radius: 12px;
   border: solid 1px black;
-  animation: loading 2.25s cubic-bezier(.61,.28,.17,.72) 250ms; /* 2.25sec. def */
+  animation: loading 1.75s cubic-bezier(.61,.28,.17,.72) 250ms; /* 1.75sec. def */
   animation-iteration-count: 3;
   animation-timing-function: ease-in-out;
 }
@@ -368,30 +368,11 @@ main {
         setInterval(sendSliderValue, 200);
       });
       </script>
-
-
     </div>
-    <div class="quarterspace"></div>
     <!--number input-->
-    <div class="inputcontainer">
-      <form>
-    <input type="text" id="numberInput" placeholder="Enter keyframe" min="-99" max="99" maxlength="3" oninput="validateInput(event)">
-    
-    <script>
-        function validateInput(event) {
-            const input = event.target;
-            const value = input.value;
-            // Entferne alle Zeichen, die keine Zahlen oder "-" sind
-            const sanitizedValue = value.replace(/[^0-9-]/g, '');
-            // Setze den bereinigten Wert zurück in das Input-Feld
-            input.value = sanitizedValue;
-        }
-    </script>
-    <button id="numberInput">Set Keyframe</button>
-      </form>
-    </div>
+  
     <!--/number input-->
-    <div class="space"></div>
+    <div class="halfspace"></div>
   </main>
     <!-- FIXED POSITION BOOT SCREEN -->
     <div class="fixed-boot">
@@ -411,7 +392,7 @@ main {
 
 </div><!--this /div ends the fixed boot so that the credicts will appear always, otherwise it´ll be affected by the animation of fadeout for fixed-boot which gives it an zindex of -10 which we dont want as it should be visible.-->
 <nav>
-<div><b>RC CABLE CAM CONTROL UI</b></div>
+<div><b>CABLE CAM CONTROL</b></div>
 <div><b>UI DESIGN</b> FELIX NOWAK</div>
 <div><b>CONTROLLER PROGRAMMING</b> DAVID OTT</div>
 <div><b>ELECTRONICAL ENGINEERING</b> MICHAEL DANISCH AND JONATHAN WALLASCH</div>
