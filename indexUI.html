@@ -1,6 +1,8 @@
-<!doctype html><html lang="en">
+<!doctype html>
+<html lang="en">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="shortcut icon" href="data:">
 <title>Cable Cam Control</title>
 <style text="text/css">
@@ -31,7 +33,7 @@ body {
 .full-btn,
 .ease-in-btn,
 .ease-out-btn,
-.ahh-btn {
+.back-btn {
   border: solid black 1px;
   border-radius: 12px;
   height: 44px;
@@ -41,31 +43,21 @@ body {
   cursor: pointer;
   transition: all .15s;
 }
-/* cl="stop-btn" style */
 .stop-btn {
   background-color: red;
 }
-/* cl="hold-btn" style */
 .hold-btn {
   background-color: orange;
 }
-/* cl="full-btn" style */
 .full-btn {
   background-color: green;
 }
-
-/* cl="preset buttons" style */
 .ease-in-btn,
 .ease-out-btn {
- background-color: lightgrey;
+  background-color: lightgrey;
 }
-
-.ahh-btn {
-  background-color: transparent;
-  border: none;
-  color: transparent;
-  padding-left: 4px;
-  padding-right: 4px;
+.back-btn {
+  background-color: orange;
 }
 
 .slider {
@@ -81,9 +73,9 @@ body {
 }
 
 .slidecontainer {
-display: flex;
-padding-left: 7.5vw;
-padding-right: 7.5vw;
+  display: flex;
+  padding-left: 7.5vw;
+  padding-right: 7.5vw;
 }
 
 .slider::-webkit-slider-thumb {
@@ -144,17 +136,9 @@ nav div {
 }
 
 .stop-btn:hover,
-.hold-btn:hover,
 .full-btn:hover,
-.ease-in-btn:hover,
-.ease-out-btn:hover {
-  font-size: 22px;
-  width: 118.8px;
-}
-
-.ahh-btn:hover {
-  background-color: rgb(0, 34, 69);
-  color: white;
+.back-btn:hover {
+  animation: traffic-hover .33s forwards;
 }
 
 .headline-ccc {
@@ -175,11 +159,9 @@ nav div {
   font-weight: bold;
 }
 
-/* @ANIMATION Keyframes */
-
 @keyframes traffic-hover {
   0% {transform: scale(1);}
-  50% {transform: scale(1.1);}
+  50% {transform: scale(1.05);}
   100% {transform: scale(1);}
 }
 
@@ -189,15 +171,13 @@ nav div {
 }
 
 @keyframes fadein {
-  /*0% { filter: blur(120px);}
-  100% {}*/
   0% {translate: 0 100vh;}
 }
 
 @keyframes loading {
   0% {width: 0px;}
   33% {background-color: transparent;}
-  100% {width: 50vw; background-color: black}
+  100% {width: 50vw; background-color: black;}
 }
 @keyframes opac {
   0% {opacity: 0;}
@@ -205,11 +185,10 @@ nav div {
 }
 
 @media (prefers-color-scheme: dark) {
-    body {
-        color: black; /* stellt sicher, dass der Text auch im Dark Mode schwarz bleibt */
-    }
+  body {
+    color: black;
+  }
 }
-
 
 .fixed-boot {
   position: fixed;
@@ -221,7 +200,7 @@ nav div {
   display: flex;
   justify-content: center;
   align-items: center;
-  animation: fadeout 100ms forwards ease-in-out 1.5s;   /* 1.5 sec. def. */
+  animation: fadeout 100ms forwards ease-in-out 1.5s;
 }
 .headline {
   font-family: Arial, Helvetica, sans-serif;
@@ -247,7 +226,7 @@ main {
   height: 24px;
   border-radius: 12px;
   border: solid 1px black;
-  animation: loading 1.75s cubic-bezier(.61,.28,.17,.72) 250ms; /* 1.75sec. def */
+  animation: loading 1.75s cubic-bezier(.61,.28,.17,.72) 250ms;
   animation-iteration-count: 3;
   animation-timing-function: ease-in-out;
 }
@@ -263,139 +242,111 @@ main {
   <main>
     <div class="container-flex">
       <p class="headline-ccc">Cable Cam Control</p>
-      <div class="current">69</div></div>
-  <!-- .space DIV for centering -->
-  <div class="quarterspace"></div>
-<!-- DIV for FLEXBOX [SPACE-BETWEEN] -->
-<div class="button-container">
-  <!-- STOP -->
-        <div>
-         <script>
-             function stop(){
-                 const xhr = new XMLHttpRequest();
-                 xhr.open('GET', "/stop", true);
-                 xhr.send();}
-          </script>       
-         <button onclick=stop() class="stop-btn"><b>Stop</b></button>
+      <div class="current">69</div>
     </div>
-    <!-- HOLD -->
-    <div>
-         <script>
-             function hold(){
-                 const xhr = new XMLHttpRequest();
-                 xhr.open('GET', "/hold", true);
-                 xhr.send();}
-          </script>       
-         <button onclick=hold() class="hold-btn">Hold</button>
+    <div class="quarterspace"></div>
+    <div class="button-container">
+      <div>
+        <button onclick="ofull()" class="back-btn">&#8672; Back</button>
+      </div>
+      <div>
+        <button onclick="stop()" class="stop-btn"><b>Stop</b></button>
+      </div>
+      <div>
+        <button onclick="full()" class="full-btn">Full &#8674;</button>
+      </div>
+      
     </div>
-    <!-- FULL -->
-    <div>
-         <script>
-             function full(){
-                 const xhr = new XMLHttpRequest();
-                 xhr.open('GET', "/full", true);
-                 xhr.send();}
-          </script>       
-         <button onclick=full() class="full-btn">Full</button>
-    </div>
-    <!-- EASE IN PRESET -->
-    <div>
-         <script>
-             function ein(){
-                 const xhr = new XMLHttpRequest();
-                 xhr.open('GET', "/ease-in", true);
-                 xhr.send();}
-          </script>       
-         <button onclick=ein() class="ease-in-btn">Ease In</button>
-    </div>
-     <!-- Ease-out -->
-    <div>
-      <script>
-          function eout(){
-              const xhr = new XMLHttpRequest();
-              xhr.open('GET', "/eout", true);
-              xhr.send();}
-       </script>       
-      <button onclick=eout() class="ease-out-btn">Ease Out</button>
- </div>
-     <!-- AHHH AHHH AHHH PRESET -->
-     <div>
-      <script>
-          function ahh(){
-              const xhr = new XMLHttpRequest();
-              xhr.open('GET', "/ahh", true);
-              xhr.send();}
-       </script>       
-      <button onclick=ahh() class="ahh-btn">Ahh Preset</button>
- </div>
-</div> <!-- Ending DIV for div.button-container -->
-    <!-- SLIDER HTML AND JS -->
     <div class="slidecontainer">
-      <input type="range" min=-99  max=99 value=0 class="slider" id="myRange">
-      <!--<script>
-        document.addEventListener('DOMContentLoaded', (event) => {
-        const slider = document.getElementById('myRange');
-        function sendSliderValue() {
-            const value = slider.value;
-            const xhr = new XMLHttpRequest();+
-            xhr.open('GET', `/?value=${value}`, true);
-            xhr.send();}
-        setInterval(sendSliderValue,200);});
-       </script>-->
-
-       <script>
-        document.addEventListener('DOMContentLoaded', (event) => {
-        const slider = document.getElementById('myRange');
-        const currentDiv = document.querySelector('.current');
-        
-        // Funktion zur Aktualisierung des Werts in der 'current'-Div
-        function updateCurrentValue() {
-            currentDiv.textContent = slider.value;
-        }
-
-        // Event Listener für Änderungen am Slider
-        slider.addEventListener('input', updateCurrentValue);
-
-        // Initiales Setzen des Werts
-        updateCurrentValue();
-        
-        function sendSliderValue() {
-            const value = slider.value;
-            const xhr = new XMLHttpRequest();
-            xhr.open('GET', `/?value=${value}`, true);
-            xhr.send();
-        }
-        setInterval(sendSliderValue, 200);
-      });
-      </script>
+      <input type="range" min="-99" max="99" value="0" class="slider" id="myRange">
     </div>
-    <!--number input-->
-  
-    <!--/number input-->
     <div class="halfspace"></div>
   </main>
-    <!-- FIXED POSITION BOOT SCREEN -->
-    <div class="fixed-boot">
-      <div class="container-for-boot">
-        <div class="headline">Cable Cam Control</div>
-        <div class="credits">
-          <div>UI DESIGN<b> / FELIX NOWAK</b></div>
-          <div>CONTROLLER PROGRAMMING<b> / DAVID OTT</b></div>
-          <div>ELECTRONICAL ENGINEERING<b> / MICHAEL DANISCH</b></div>
-          <div>ELECTRONICAL ENGINEERING<b> / JONATHAN WALLASCH</b></div>
-          <div class="space"></div>
-        </div>
+  <div class="fixed-boot">
+    <div class="container-for-boot">
+      <div class="headline">Cable Cam Control</div>
+      <div class="credits">
+        <div>UI DESIGN<b> / FELIX NOWAK</b></div>
+        <div>CONTROLLER PROGRAMMING<b> / DAVID OTT</b></div>
+        <div>ELECTRONICAL ENGINEERING<b> / MICHAEL DANISCH</b></div>
+        <div>ELECTRONICAL ENGINEERING<b> / JONATHAN WALLASCH</b></div>
+        <div class="space"></div>
+      </div>
     </div>
-  
-            <!-- LOADING ANIMATION BAR -->
-            <div class="container-loading"><div class="loading-bar"></div></div>
+    <div class="container-loading"><div class="loading-bar"></div></div>
+  </div>
+  <nav>
+    <div><b>CABLE CAM CONTROL</b></div>
+    <div><b>UI DESIGN</b> FELIX NOWAK</div>
+    <div><b>CONTROLLER PROGRAMMING</b> DAVID OTT</div>
+    <div><b>ELECTRONICAL ENGINEERING</b> MICHAEL DANISCH AND JONATHAN WALLASCH</div>
+  </nav>
+  <script>
+    const slider = document.getElementById('myRange');
+    const currentDiv = document.querySelector('.current');
+    
+    function updateCurrentValue() {
+      currentDiv.textContent = slider.value;
+    }
+    
+    slider.addEventListener('input', updateCurrentValue);
+    
+    function stop() {
+      slider.value = 0;
+      updateCurrentValue();
+    }
+    
+    function full() {
+      if(slider.value < 0){
+        alert("Don't change direction so fast");}
+      else{
+          slider.value = 99;
+          updateCurrentValue();}
+    }
+    
+    function ofull() {
+          if(slider.value > 0){
+        alert("Don't change direction so fast");}
+      else{
+          slider.value = -99;
+          updateCurrentValue();}
+    }
+    
+    document.addEventListener('DOMContentLoaded', (event) => {
+      updateCurrentValue();
+      let revalue = 0;
+      function sendSliderValue() {
+        const value = slider.value;
+        if (value != revalue) {
+          const xhr = new XMLHttpRequest();
+          xhr.open('GET', `/?value=${value}`, true);
+          xhr.send();
+          revalue = value;
+        }
+      }
+      setInterval(sendSliderValue, 69);
+    });
+  </script>
+<!--DER CODE ANSICH FUNKTIONIERT UND ER SENDET AUCH KORREKT. ABER DIE ZAHL WIRD NICHT ANGEZEIGT AUF DEM DISPLAY.
+<script>
+  document.addEventListener('keydown', function(event) {
+      if (event.key === 'ArrowLeft') {
+          // Der Slider mit der ID 'myrange' wird auf -99 gesetzt
+          document.getElementById('myRange').value = -99;
+      }
+  });
+</script>
 
-</div><!--this /div ends the fixed boot so that the credicts will appear always, otherwise it´ll be affected by the animation of fadeout for fixed-boot which gives it an zindex of -10 which we dont want as it should be visible.-->
-<nav>
-<div><b>CABLE CAM CONTROL</b></div>
-<div><b>UI DESIGN</b> FELIX NOWAK</div>
-<div><b>CONTROLLER PROGRAMMING</b> DAVID OTT</div>
-<div><b>ELECTRONICAL ENGINEERING</b> MICHAEL DANISCH AND JONATHAN WALLASCH</div>
-</nav>
+<script>
+  document.addEventListener('keydown', function(event) {
+      if (event.key === 'ArrowRight') {
+          // Der Slider mit der ID 'myrange' wird auf -99 gesetzt
+          document.getElementById('myRange').value = 99;
+      }
+  });
+</script>
+
+-->
+
 </body>
 </html>
