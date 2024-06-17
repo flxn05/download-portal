@@ -145,7 +145,7 @@ nav div {
   font-size: 1.75rem;
   font-weight: bold;
   font-family: Arial, Helvetica, sans-serif;
-  animation: opac .25s ease-in-out backwards 2.25s;
+  animation: opac .25s ease-in-out backwards 2s;
   letter-spacing: -2.25px;
 }
 .container-flex {
@@ -161,7 +161,7 @@ nav div {
 
 @keyframes traffic-hover {
   0% {transform: scale(1);}
-  50% {transform: scale(1.05);}
+  50% {transform: scale(0.98);}
   100% {transform: scale(1);}
 }
 
@@ -189,6 +189,11 @@ nav div {
     color: black;
   }
 }
+@media (max-height: 512px) {
+  nav div {
+    font-size: 8px;
+  }
+}
 
 .fixed-boot {
   position: fixed;
@@ -200,7 +205,7 @@ nav div {
   display: flex;
   justify-content: center;
   align-items: center;
-  animation: fadeout 100ms forwards ease-in-out 1.5s;
+  animation: fadeout 100ms forwards ease-in-out 1.25s;
 }
 .headline {
   font-family: Arial, Helvetica, sans-serif;
@@ -219,14 +224,14 @@ nav div {
   text-align: left;
 }
 main {
-  animation: fadein .5s ease-in-out 1.5s forwards;
+  animation: fadein .5s ease-in-out 1.25s forwards;
 }
 
 .loading-bar {
   height: 24px;
   border-radius: 12px;
   border: solid 1px black;
-  animation: loading 1.75s cubic-bezier(.61,.28,.17,.72) 250ms;
+  animation: loading 1s cubic-bezier(.61,.28,.17,.72) 250ms;
   animation-iteration-count: 3;
   animation-timing-function: ease-in-out;
 }
