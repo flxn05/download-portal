@@ -294,8 +294,25 @@ main {
       currentDiv.textContent = slider.value;
     }
     
-    slider.addEventListener('input', updateCurrentValue);
     
+      document.addEventListener('keydown', function(event) {
+          if (event.key === 'd') {
+              if(slider.value == -99){
+                  slider.value = Number(slider.value) +4;}
+              else{    
+              slider.value =Number(slider.value) +5;}
+          updateCurrentValue();
+      }
+      });  
+      document.addEventListener('keydown', function(event) {
+          if (event.key === 'a') {
+              if(slider.value == 99){
+                  slider.value = Number(slider.value) -4;}
+              else{    
+              slider.value =Number(slider.value) -5;}
+          updateCurrentValue();
+      }
+      });    
     function stop() {
       slider.value = 0;
       updateCurrentValue();
@@ -317,6 +334,22 @@ main {
           updateCurrentValue();}
     }
     
+      document.addEventListener('keydown', function(event) {
+          if (event.key === 'ArrowLeft') {
+            ofull();
+      }
+      });
+      document.addEventListener('keydown', function(event) {
+          if (event.key === 'ArrowUp') {
+               stop()    
+      }
+      });
+    slider.addEventListener('input', updateCurrentValue);
+    document.addEventListener('keydown', function(event) {
+      if (event.key === 'ArrowRight') {
+             full()
+      }
+      });
     document.addEventListener('DOMContentLoaded', (event) => {
       updateCurrentValue();
       let revalue = 0;
@@ -332,26 +365,6 @@ main {
       setInterval(sendSliderValue, 69);
     });
   </script>
-<!--DER CODE ANSICH FUNKTIONIERT UND ER SENDET AUCH KORREKT. ABER DIE ZAHL WIRD NICHT ANGEZEIGT AUF DEM DISPLAY.
-<script>
-  document.addEventListener('keydown', function(event) {
-      if (event.key === 'ArrowLeft') {
-          // Der Slider mit der ID 'myrange' wird auf -99 gesetzt
-          document.getElementById('myRange').value = -99;
-      }
-  });
-</script>
-
-<script>
-  document.addEventListener('keydown', function(event) {
-      if (event.key === 'ArrowRight') {
-          // Der Slider mit der ID 'myrange' wird auf -99 gesetzt
-          document.getElementById('myRange').value = 99;
-      }
-  });
-</script>
-
--->
 
 </body>
 </html>
