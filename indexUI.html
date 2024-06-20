@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="shortcut icon" href="data:">
-<link rel="icon" type="image/x-icon" href="favicon.png">
+<link rel="icon" type="image/x-icon" href="favicon-two.png">
 <title>Cable Cam Control</title>
 <style text="text/css">
 
@@ -221,6 +221,10 @@ nav div {
   0% {opacity: 1;}
   100% {opacity: 0; display: none;}
 }
+@keyframes start-now {
+  0% {opacity: 0;}
+  100% {opacity: 1;}
+}
 
 @media (prefers-color-scheme: dark) {
   body {
@@ -232,6 +236,14 @@ nav div {
     font-size: 8px;
   }
   .tltip-con {
+    display: none;
+  }
+  .headline-ccc,
+  main {
+    animation: start-now forwards 500ms;
+  }
+  .fixed-boot div,
+  .loading-bar {
     display: none;
   }
 }
@@ -264,9 +276,13 @@ nav div {
   font-style: italic;
   text-align: left;
 }
-main {
+
+@media (min-height: 512px) {
+  main {
   animation: fadein .5s ease-in-out 1.25s forwards;
 }
+}
+
 
 .loading-bar {
   height: 24px;
@@ -293,7 +309,7 @@ main {
     <div class="quarterspace"></div>
     <div class="button-container">
       <div>
-        <button onclick="ofull()" class="back-btn" id="minusfivebtn">- 5</button>
+        <button onclick="gleft()" class="back-btn" id="minusfivebtn">- 5</button>
       </div>
       <div>
         <button onclick="ofull()" class="back-btn">&#8672; Back</button>
@@ -305,7 +321,7 @@ main {
         <button onclick="full()" class="full-btn">Full &#8674;</button>
       </div>
       <div>
-        <button onclick="ofull()" class="back-btn" id="plusfivebtn">+ 5</button>
+        <button onclick="gright()" class="back-btn" id="plusfivebtn">+ 5</button>
       </div>
       
     </div>
@@ -350,6 +366,20 @@ main {
     }
     
     
+    function gleft(){
+          if(slider.value == 99){
+                  slider.value = Number(slider.value) -4;}
+              else{    
+              slider.value =Number(slider.value) -5;}
+          updateCurrentValue();
+      }
+    function gright(){
+          if(slider.value == -99){
+                  slider.value = Number(slider.value) +4;}
+              else{    
+              slider.value =Number(slider.value) +5;}
+          updateCurrentValue();
+      }
       document.addEventListener('keydown', function(event) {
           if (event.key === 'ArrowRight') {
               if(slider.value == -99){
