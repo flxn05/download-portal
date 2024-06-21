@@ -223,7 +223,7 @@ nav div {
 }
 @keyframes start-now {
   0% {opacity: 0;}
-  100% {opacity: 1;}
+  100% {opacity: 1; z-index: 15;}
 }
 
 @media (prefers-color-scheme: dark) {
@@ -240,11 +240,13 @@ nav div {
   }
   .headline-ccc,
   main {
-    animation: start-now forwards 500ms;
+    animation: start-now 0ms forwards 0ms !important;
+    z-index: 15 !important;
   }
   .fixed-boot div,
   .loading-bar {
-    display: none;
+    display: none !important;
+    z-index: -15 !important;
   }
 }
 
