@@ -451,6 +451,15 @@ nav div {
       }
       setInterval(sendSliderValue, 69);
     });
+
+    // JavaScript to detect the OS and change background color
+    document.addEventListener('DOMContentLoaded', (event) => {
+      const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+      
+      if (/android/i.test(userAgent) || /iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+        document.body.style.backgroundColor = 'green';
+      }
+    });
   </script>
 
 </body>
