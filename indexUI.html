@@ -451,16 +451,35 @@ nav div {
       }
       setInterval(sendSliderValue, 69);
     });
-
-    // JavaScript to detect the OS and change background color
-    document.addEventListener('DOMContentLoaded', (event) => {
-      const userAgent = navigator.userAgent || navigator.vendor || window.opera;
-      
-      if (/android/i.test(userAgent) || /iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
-        document.body.style.backgroundColor = 'green';
-      }
-    });
   </script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+    if (isMobile) {
+      const tltipConElements = document.querySelectorAll('.tltip-con');
+      tltipConElements.forEach(element => {
+        element.style.display = 'none';
+      });
+
+      // Apply padding-left and padding-right of 2.5vw to .slidecontainer
+      const slideContainer = document.querySelector('.slidecontainer');
+      if (slideContainer) {
+        slideContainer.style.paddingLeft = '2.5vw';
+        slideContainer.style.paddingRight = '2.5vw';
+      }
+
+      // Apply font size of 8rem to .current
+      const currentElement = document.querySelector('.current');
+      if (currentElement) {
+        currentElement.style.fontSize = '8rem';
+      }
+    }
+  });
+</script>
+
+</script>
+
 
 </body>
 </html>
