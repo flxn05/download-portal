@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geräte-Erkennung</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+            font-size: 2em;
+            color: white;
+        }
+        .ios {
+            background-color: blue;
+        }
+        .android {
+            background-color: green;
+        }
+        .pcmac {
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+    <script>
+        function detectOS() {
+            var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+
+            // iOS detection
+            if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+                document.body.className = 'ios';
+                document.body.textContent = 'iOS';
+            }
+            // Android detection
+            else if (/android/i.test(userAgent)) {
+                document.body.className = 'android';
+                document.body.textContent = 'Android';
+            }
+            // PC/Mac detection
+            else {
+                document.body.className = 'pcmac';
+                document.body.textContent = 'PC/MAC';
+            }
+        }
+
+        detectOS();
+    </script>
+</body>
+</html>
