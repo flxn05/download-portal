@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="shortcut icon" href="data:">
-<link rel="icon" type="image/x-icon" href="favicon-two.png">
+<link rel="icon" type="image/x-icon" href="favicon.png">
 <title>Cable Cam Control</title>
 <style text="text/css">
 .halfspace {
@@ -15,7 +15,7 @@
 }
 body {
   /*background-color: rgb(29, 63, 99) rgb(36, 24, 36);*/
-  background-image: linear-gradient(80deg, rgb(33, 57, 92), rgb(104, 52, 104));
+  background-image: linear-gradient(80deg, rgb(53, 77, 112), rgb(124, 72, 124));
   padding-top: 1vh;
   color: black;
   overflow-x: hidden;
@@ -178,7 +178,7 @@ nav div {
 
 #warning {
   margin-top: 5vh;
-  color: darkred;
+  color: rgb(39, 0, 0);
   letter-spacing: 2px;
   font-size: 1.125rem;
   font-family: Arial, Helvetica, sans-serif;
@@ -201,7 +201,8 @@ nav div {
 }
 
 @keyframes fadein {
-  0% {translate: 0 100vh;}
+  0% {translate: 0 100vh; filter: blur(24px);}
+  100% {translate: 0 0vh}
 }
 
 @keyframes loading {
@@ -280,7 +281,7 @@ nav div {
 
 @media (min-height: 512px) {
   main {
-  animation: fadein .5s ease-in-out 1.25s both;
+  animation: fadein cubic-bezier(.17,.67,.39,1.17) .75s  1.25s both;
 }
 }
 
